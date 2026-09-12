@@ -368,48 +368,32 @@
     #skills { background: var(--bg); }
     .skills-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1rem;
     }
-    .skill-category h3 {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 3px;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.8rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .skill-bars { display: flex; flex-direction: column; gap: 1.2rem; }
-    .skill-row { }
-    .skill-row-top {
+    .skill-chip {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.5rem;
-    }
-    .skill-name {
-      font-size: 0.9rem;
+      align-items: center;
+      min-height: 64px;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--card), rgba(123,94,167,0.12));
       color: var(--text);
-      font-weight: 400;
-    }
-    .skill-pct {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent);
-    }
-    .skill-bar-bg {
-      height: 3px;
-      background: var(--card);
-      border-radius: 2px;
+      font-size: 0.82rem;
+      letter-spacing: 0.3px;
+      position: relative;
       overflow: hidden;
     }
-    .skill-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 2px;
-      width: 0;
-      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    .skill-chip::before {
+      content: '';
+      width: 4px;
+      align-self: stretch;
+      flex: 0 0 4px;
+      margin-right: 0.9rem;
+      border-radius: 4px;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
     }
 
     /* ── EXPERIENCE ── */
@@ -460,6 +444,13 @@
       color: var(--muted);
       margin-bottom: 1rem;
     }
+      .project-role {
+        color: var(--accent);
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.4px;
+        margin: 0.35rem 0 0.7rem;
+      }
     .tag-list { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
     .tag {
       font-family: var(--font-mono);
@@ -471,7 +462,18 @@
       border: 1px solid rgba(0,229,180,0.2);
       letter-spacing: 1px;
     }
+
+    .tag.blue {
+      background: rgba(123,94,167,0.1);
+      color: #0ebfde;
+      background: rgba(123,94,167,0.1);
+      color: #3830d7;
+      border-color: rgba(123,94,167,0.25);
+    }
+
     .tag.purple {
+      background: rgba(123,94,167,0.1);
+      color: #a87fd4;
       background: rgba(123,94,167,0.1);
       color: #a87fd4;
       border-color: rgba(123,94,167,0.25);
@@ -875,21 +877,12 @@
   <div class="section-label">02 / Skills</div>
   <div class="section-title">TECH <span>STACK</span></div>
   <div class="skills-layout">
-    <div class="skill-category reveal">
-      <h3>Programming Languages</h3>
-      <div class="skill-bars">
-        <div class="skill-row"><div class="skill-row-top"><span class="skill-name">HTML / CSS</span><span class="skill-pct">85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="85"></div></div></div>
-        <div class="skill-row"><div class="skill-row-top"><span class="skill-name">JavaScript</span><span class="skill-pct">55%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="55"></div></div></div>
-        <div class="skill-row"><div class="skill-row-top"><span class="skill-name">Python</span><span class="skill-pct">60%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="60"></div></div></div>
-      </div>
-    </div>
-    <div class="skill-category reveal" style="transition-delay:0.1s">
-      <h3>Data &amp; Analytics Tools</h3>
-      <div class="skill-bars">
-        <div class="skill-row"><div class="skill-row-top"><span class="skill-name">Power BI</span><span class="skill-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="90"></div></div></div>
-        <div class="skill-row"><div class="skill-row-top"><span class="skill-name">SQL</span><span class="skill-pct">85%</span></div><div class="skill-bar-bg"><div class="skill-bar-fill" data-pct="85"></div></div></div>
-      </div>
-    </div>
+    <div class="skill-chip reveal">Google Cloud Platform</div>
+    <div class="skill-chip reveal" style="transition-delay:0.05s">SQL</div>
+    <div class="skill-chip reveal" style="transition-delay:0.1s">Power BI</div>
+    <div class="skill-chip reveal" style="transition-delay:0.15s">Tableau</div>
+    <div class="skill-chip reveal" style="transition-delay:0.2s">Git</div>
+    <div class="skill-chip reveal" style="transition-delay:0.25s">JIRA</div>
   </div>
 </section>
 
@@ -906,6 +899,7 @@
       <strong style="color:var(--text);font-size:0.95rem;">
   AI-Powered Power BI Development Using MCP
 </strong>
+        <div class="project-role">Role: PBI Developer, QA Engineer</div>
 <ul></ul>
 
 <ul style="color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:520px;">
@@ -913,25 +907,31 @@
   <li>Work with Power BI, DAX, Power Query, SQL, and data modeling for end-to-end report development using MCP-enabled workflows.</li>
   <li>Use AI-assisted workflows for DAX generation, query development, data analysis, troubleshooting, report optimization, and development automation.</li>
 </ul>
+      <div class="tag-list">
+        <span class="tag">GitHub Copilot</span>
+        <span class="tag">Power BI</span>
+        <span class="tag">MCP Server</span>
+      </div>
 
       <strong style="color:var(--text);font-size:0.95rem;">
   Data Engineering, Power BI Development & QA Testing — GCP ETL Project
 </strong>
+        <div class="project-role">Role: ETL Data Engineering, Power BI Development, ETL & BI Testing</div>
 
 <ul style="color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:520px;">
-  <li>Developed and supported ETL workflows on Google Cloud Platform (GCP) for data ingestion, transformation, processing, and validation.</li>
-  <li>Worked with BigQuery and SQL for data extraction, transformation, validation, and analysis.</li>
-  <li>Developed and maintained Power BI dashboards and reports using data modeling, DAX, and Power Query.</li>
-  <li>Performed end-to-end ETL and data quality testing, including source-to-target validation, business rule validation, and reconciliation.</li>
-  <li>Identified and investigated data discrepancies across ETL pipelines, BigQuery, and Power BI.</li>
+ <li>Designed, developed, and maintained scalable ETL pipelines on Google Cloud Platform (GCP), streamlining data ingestion, transformation, and validation across multiple sources.</li>
+<li>Leveraged BigQuery and Dataform to extract, transform, and analyze large datasets, ensuring accuracy and consistency for downstream reporting.</li>
+<li>Built and maintained interactive Power BI dashboards and reports, applying advanced data modeling, DAX calculations, and Power Query transformations to deliver actionable business insights.</li>
+<li>Executed comprehensive ETL and data quality testing, including source-to-target validation, business rule verification, and reconciliation, to ensure data integrity across systems.</li>
+<li>Partnered with cross-functional teams to identify, troubleshoot, and resolve data quality issues, improving reliability and accuracy of reporting outputs.</li>
 </ul>
 
 
       <div class="tag-list">
-        <span class="tag">SQL</span>
-        <span class="tag">GCP</span>
-        <span class="tag">Power BI</span>
-        <span class="tag">MCP Server</span>
+        <span class="tag blue">SQL</span>
+        <span class="tag blue">GCP</span>
+        <span class="tag blue">Power BI</span>
+        <span class="tag blue">MCP Server</span>
       </div>
     </div>
     <div class="timeline-item">
@@ -941,7 +941,7 @@
       <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:520px;">Explored the fundamentals of Data Analytics within the IT department of LMW — one of India's leading engineering enterprises. Worked on real business data and reporting workflows.</p>
       <div class="tag-list">
         <span class="tag purple">Data Analytics</span>
-        <span class="tag purple">Reporting</span>
+        <span class="tag purple">Tableau</span>
       </div>
     </div>
   </div>
@@ -1139,19 +1139,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // Skill bars animate on view
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.pct + '%';
-        });
-        barObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.skill-category').forEach(el => barObserver.observe(el));
 
   // Contact form — Netlify Forms via fetch, with inline success state
   const contactForm = document.getElementById('contactForm');
