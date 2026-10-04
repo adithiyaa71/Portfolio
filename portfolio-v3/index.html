@@ -154,18 +154,20 @@
     }
     .hero-left { position: relative; z-index: 1; }
     .hero-tag {
+      display: inline-block;
+      padding: 0.5rem 0.8rem;
+      border: 1px solid rgba(0,229,180,0.2);
+      border-radius: 999px;
+      background: rgba(0,229,180,0.06);
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      letter-spacing: 3px;
+      letter-spacing: 1.5px;
       color: var(--accent);
       text-transform: uppercase;
       font-weight: 600;
       margin-bottom: 1rem;
-      display: block;
     }
-    
-    
-    
+
     h1.hero-name {
       font-family: var(--font-display);
       font-size: clamp(4rem, 9vw, 8rem);
@@ -173,8 +175,12 @@
       letter-spacing: 4px;
       color: var(--text);
       margin-bottom: 1.5rem;
+      text-transform: uppercase;
     }
-    h1.hero-name span { color: var(--accent); }
+    h1.hero-name span {
+      color: var(--accent);
+      text-shadow: 0 0 20px rgba(0,229,180,0.18);
+    }
     .hero-cert-line {
       font-family: var(--font-mono);
       font-size: 0.95rem;
@@ -345,6 +351,10 @@
       border-radius: 4px;
       border-left: 3px solid var(--accent);
     }
+    .info-item-wide {
+      grid-column: 1 / -1;
+      max-width: 100%;
+    }
     .info-item .info-key {
       font-family: var(--font-mono);
       font-size: 0.65rem;
@@ -363,32 +373,64 @@
     #skills { background: var(--bg); }
     .skills-layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(4, minmax(180px, 1fr));
+      gap: 1.2rem;
+      align-items: start;
+    }
+    .skill-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .skill-column-label {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(232,232,240,0.92);
+      text-align: center;
+      padding: 0.3rem 0.5rem;
+      font-weight: 500;
+      opacity: 0.95;
     }
     .skill-chip {
       display: flex;
       align-items: center;
-      min-height: 64px;
-      padding: 1rem 1.2rem;
+      justify-content: center;
+      min-height: 88px;
+      padding: 0.9rem 1rem;
       border: 1px solid var(--border);
       border-radius: 6px;
-      background: linear-gradient(135deg, var(--card), rgba(123,94,167,0.12));
+      background: linear-gradient(135deg, rgba(26,26,37,0.95), rgba(123,94,167,0.08));
       color: var(--text);
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      letter-spacing: 0.3px;
+      font-size: clamp(0.8rem, 1vw, 1.15rem);
+      line-height: 1.2;
+      text-align: center;
       position: relative;
       overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
     }
     .skill-chip::before {
       content: '';
-      width: 4px;
-      align-self: stretch;
-      flex: 0 0 4px;
-      margin-right: 0.9rem;
-      border-radius: 4px;
+      position: absolute;
+      left: 0.9rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 42%;
+      border-radius: 3px;
       background: linear-gradient(180deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 8px rgba(0,229,180,0.4);
+    }
+    .skill-chip:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0,229,180,0.28);
+      box-shadow: 0 12px 30px rgba(0,229,180,0.08);
     }
 
     /* ── EXPERIENCE ── */
@@ -404,15 +446,18 @@
       background: linear-gradient(to bottom, var(--accent), transparent);
     }
     .timeline-item {
-      padding-left: 2.5rem;
-      margin-bottom: 3.5rem;
+      padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+      margin-bottom: 4rem;
       position: relative;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.01);
     }
     .timeline-item::before {
       content: '';
       position: absolute;
       left: -5px;
-      top: 6px;
+      top: 22px;
       width: 11px;
       height: 11px;
       border-radius: 50%;
@@ -439,14 +484,48 @@
       color: var(--muted);
       margin-bottom: 1rem;
     }
-      .project-role {
+    .project-category {
+      display: block;
+      margin: 0.3rem 0 0.8rem;
+      color: var(--text);
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      letter-spacing: 1.4px;
+      line-height: 1.2;
+      font-weight: 500;
+    }
+    .project-header-block {
+      margin-top: 0.2rem;
+      margin-bottom: 0.8rem;
+      margin-left: 1.2rem;
+    }
+    .project-heading {
+      display: inline-block;
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.4;
+      position: relative;
+      padding-left: 1.1rem;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+    .project-heading::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1.2;
+    }
+    .project-role {
         color: var(--accent);
         font-family: var(--font-mono);
         font-size: 0.7rem;
         letter-spacing: 0.4px;
         margin: 0.35rem 0 0.7rem;
       }
-    .tag-list { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
+    .tag-list { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; margin-left: 1.2rem; }
     .tag {
       font-family: var(--font-mono);
       font-size: 0.7rem;
@@ -526,7 +605,12 @@
 
     /* ── PROJECTS ── */
     #projects { background: var(--surface); }
-    .project-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .project-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
     .project-card {
       background: var(--bg);
       border: 1px solid var(--border);
@@ -567,6 +651,30 @@
       color: var(--muted);
       line-height: 1.7;
       margin-bottom: 1.5rem;
+    }
+    .project-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .project-bullets li {
+      position: relative;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .project-bullets li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
     .project-link {
       font-family: var(--font-mono);
@@ -687,7 +795,16 @@
       display: flex;
       align-items: center;
       gap: 1.2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.01);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .contact-item:hover {
+      border-color: rgba(0,229,180,0.22);
+      transform: translateY(-2px);
     }
     .contact-icon {
       width: 48px;
@@ -701,6 +818,7 @@
       font-size: 1.1rem;
       color: var(--accent);
       flex-shrink: 0;
+      box-shadow: inset 0 0 0 1px rgba(0,229,180,0.04);
     }
     .contact-item-label {
       font-family: var(--font-mono);
@@ -823,12 +941,12 @@
   <div class="hero-bg"></div>
   <div class="hero-grid-overlay"></div>
   <div class="hero-left reveal">
-    <div class="hero-tag"><b>Associate Software Engineer at SAAMA Technologies</b></div>
-    <h1 class="hero-name">ADITHIYAA M</span><br></h1>
+    <div class="hero-tag">Associate Software Engineer at SAAMA Technologies</div>
+    <h1 class="hero-name">ADITHIYAA <span>M</span></h1>
     <p class="hero-cert-line">Google Cloud Certified Professional Data Engineer</p>
     <p class="hero-desc">
       Data Analyst &amp; Data Engineer passionate about turning raw data into
-      meaningful insights. Experienced in SQL, Power BI, GCP and MCP Servers.
+      meaningful insights. Experienced in SQL, Power BI, Tableau, GCP and MCP Servers.
     </p>
     
     <div class="social-links">
@@ -856,12 +974,13 @@
     </div>
     <div class="reveal" style="transition-delay:0.1s">
       <div class="info-grid">
-        <div class="info-item"><div class="info-key">Birthday</div><div class="info-val">7 Jan 2003</div></div>
-        <div class="info-item"><div class="info-key">Degree</div><div class="info-val">B.Tech 2020 - 2024</div></div>
-        <div class="info-item"><div class="info-key">City</div><div class="info-val">Madurai, India</div></div>
+        <div class="info-item"><div class="info-key">Qualification</div><div class="info-val">B.Tech 2020 - 2024</div></div>
         <div class="info-item"><div class="info-key">Specialization</div><div class="info-val">Information Technology</div></div>
+        <div class="info-item"><div class="info-key">D.O.B</div><div class="info-val">7th Jan 2003</div></div>
+        <div class="info-item"><div class="info-key">City</div><div class="info-val">Madurai, India</div></div>
         <div class="info-item"><div class="info-key">Phone</div><div class="info-val">+91 9095784749</div></div>
         <div class="info-item"><div class="info-key">Email</div><div class="info-val">adithiyaa71@gmail.com</div></div>
+        <div class="info-item"><div class="info-key">Languages Known</div><div class="info-val">English, Tamil, Hindi</div></div>
       </div>
     </div>
   </div>
@@ -872,13 +991,26 @@
   <div class="section-label">02 / Skills</div>
   <div class="section-title">TECH <span>STACK</span></div>
   <div class="skills-layout">
-    <div class="skill-chip reveal">Google Cloud Platform</div>
-    <div class="skill-chip reveal" style="transition-delay:0.05s">SQL</div>
-    <div class="skill-chip reveal" style="transition-delay:0.1s">Power BI</div>
-    <div class="skill-chip reveal" style="transition-delay:0.25s">Tableau</div>
-    <div class="skill-chip reveal" style="transition-delay:0.2s">Git</div>
-    <div class="skill-chip reveal" style="transition-delay:0.25s">JIRA</div>
-    
+    <div class="skill-column">
+      <div class="skill-column-label">Cloud &amp; Databases</div>
+      <div class="skill-chip reveal">Google Cloud Platform (GCP)</div>
+      <div class="skill-chip reveal" style="transition-delay:0.05s">SQL</div>
+    </div>
+    <div class="skill-column">
+      <div class="skill-column-label">BI &amp;<br>Analytics</div>
+      <div class="skill-chip reveal" style="transition-delay:0.1s">Power BI</div>
+      <div class="skill-chip reveal" style="transition-delay:0.15s">Tableau</div>
+    </div>
+    <div class="skill-column">
+      <div class="skill-column-label">Dev &amp;<br>Workflow</div>
+      <div class="skill-chip reveal" style="transition-delay:0.2s">Git</div>
+      <div class="skill-chip reveal" style="transition-delay:0.25s">Jira</div>
+    </div>
+    <div class="skill-column">
+      <div class="skill-column-label">AI &amp; Integration</div>
+      <div class="skill-chip reveal" style="transition-delay:0.3s">Model Context Protocol (MCP)</div>
+      <div class="skill-chip reveal" style="transition-delay:0.35s">GitHub Copilot</div>
+    </div>
   </div>
 </section>
 
@@ -890,54 +1022,62 @@
     <div class="timeline-item">
       <div class="timeline-date">Jan 2025 — Present</div>
       <div class="timeline-company">Saama Technologies</div>
-      <div class="timeline-role">Associate Software Engineer · India</div>
+      <div class="timeline-role">India</div>
 
-      <strong style="color:var(--text);font-size:0.95rem;">
-  AI-Powered Power BI Development Using MCP
-</strong>
-        <div class="project-role">Role: PBI Developer, QA Engineer</div>
-<ul></ul>
+      <div class="project-category">Projects Worked:-</div>
 
-<ul style="color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:520px;">
-  <li>Leverage AI-assisted development tools and MCP servers to accelerate Power BI development and streamline analytics workflows.</li>
-  <li>Work with Power BI, DAX, Power Query, SQL, and data modeling for end-to-end report development using MCP-enabled workflows.</li>
-  <li>Use AI-assisted workflows for DAX generation, query development, data analysis, troubleshooting, report optimization, and development automation.</li>
-</ul>
+      <div class="project-header-block">
+        <strong class="project-heading">AI-Powered BI Reporting &amp; Development Using MCP</strong>
+        <div class="project-role">Role: BI Development, QA Testing</div>
+      </div>
+
+      <ul class="project-bullets">
+        <li>Develop and enhance Power BI and Tableau dashboards using AI-assisted development tools to improve development efficiency and streamline analytics workflows.</li>
+        <li>Utilize MCP-enabled workflows for Power BI and XML-based configurations for Tableau to automate development tasks and improve dashboard development productivity.</li>
+      </ul>
       <div class="tag-list">
         <span class="tag">GitHub Copilot</span>
         <span class="tag">Power BI</span>
+        <span class="tag">Tableau</span>
         <span class="tag">MCP Server</span>
       </div>
 
-      <strong style="color:var(--text);font-size:0.95rem;">
-  Data Engineering, Power BI Development & QA Testing — GCP ETL Project
-</strong>
-        <div class="project-role">Role: ETL Data Engineering, Power BI Development, ETL & BI Testing</div>
+      <div class="project-header-block" style="margin-top: 2.5rem;">
+        <strong class="project-heading">Data Engineering, Power BI Development &amp; QA Testing — GCP ETL Project</strong>
+        <div class="project-role">Role: ETL Data Engineering, Power BI Development, ETL &amp; BI Testing</div>
+      </div>
 
-<ul style="color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:520px;">
- <li>Designed, developed, and maintained scalable ETL pipelines on Google Cloud Platform (GCP), streamlining data ingestion, transformation, and validation across multiple sources.</li>
-<li>Leveraged BigQuery and Dataform to extract, transform, and analyze large datasets, ensuring accuracy and consistency for downstream reporting.</li>
-<li>Built and maintained interactive Power BI dashboards and reports, applying advanced data modeling, DAX calculations, and Power Query transformations to deliver actionable business insights.</li>
-<li>Executed comprehensive ETL and data quality testing, including source-to-target validation, business rule verification, and reconciliation, to ensure data integrity across systems.</li>
-<li>Partnered with cross-functional teams to identify, troubleshoot, and resolve data quality issues, improving reliability and accuracy of reporting outputs.</li>
-</ul>
-
+      <ul class="project-bullets">
+        <li>Designed, developed, and maintained scalable ETL pipelines on Google Cloud Platform (GCP), streamlining data ingestion, transformation, and validation across multiple sources.</li>
+        <li>Leveraged BigQuery and Dataform to extract, transform, and analyze large datasets, ensuring accuracy and consistency for downstream reporting.</li>
+        <li>Built and maintained interactive Power BI dashboards and reports, applying advanced data modeling, DAX calculations, and Power Query transformations to deliver actionable business insights.</li>
+        <li>Executed comprehensive ETL and data quality testing, including source-to-target validation, business rule verification, and reconciliation, to ensure data integrity across systems.</li>
+        <li>Partnered with cross-functional teams to identify, troubleshoot, and resolve data quality issues, improving reliability and accuracy of reporting outputs.</li>
+      </ul>
 
       <div class="tag-list">
-        <span class="tag blue">SQL</span>
-        <span class="tag blue">GCP</span>
-        <span class="tag blue">Power BI</span>
-        <span class="tag blue">MCP Server</span>
+        <span class="tag">SQL</span>
+        <span class="tag">GCP</span>
+        <span class="tag">Power BI</span>
       </div>
     </div>
     <div class="timeline-item">
       <div class="timeline-date">Jan 2024 — Feb 2024</div>
       <div class="timeline-company">Lakshmi Machine Works</div>
       <div class="timeline-role">Data Analyst Intern · IT Dept, Coimbatore</div>
-      <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:520px;">Explored the fundamentals of Data Analytics within the IT department of LMW — one of India's leading engineering enterprises. Worked on real business data and reporting workflows.</p>
+        <div class="project-header-block">
+        <strong class="project-heading">Data Analytics Fundamentals and Reporting Workflow</strong>
+        <div class="project-role">Role: Data Analyst Intern</div>
+      </div>
+
+      <ul class="project-bullets">
+        <li>Explored the fundamentals of Data Analytics within the IT department of LMW.</li>
+        <li>Worked with real business data and reporting workflows to understand how dashboards and analytical insights support operational decisions.</li>
+      </ul>
+
       <div class="tag-list">
-        <span class="tag purple">Data Analytics</span>
-        <span class="tag purple">Tableau</span>
+        <span class="tag">Data Analytics</span>
+        <span class="tag">Tableau</span>
       </div>
     </div>
   </div>
