@@ -373,64 +373,79 @@
     #skills { background: var(--bg); }
     .skills-layout {
       display: grid;
-      grid-template-columns: repeat(4, minmax(180px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(4, minmax(200px, 1fr));
+      gap: 1.8rem 1.5rem;
       align-items: start;
+      max-width: 1280px;
+      margin: 0 auto;
     }
     .skill-column {
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 0.9rem;
     }
     .skill-column-label {
-      min-height: 58px;
+      height: 3.2rem;
+      flex: 0 0 3.2rem;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 3px;
+      font-size: 0.66rem;
+      letter-spacing: 0.22rem;
       text-transform: uppercase;
-      color: rgba(232,232,240,0.92);
+      color: rgba(232, 232, 240, 0.86);
       text-align: center;
-      padding: 0.3rem 0.5rem;
-      font-weight: 500;
-      opacity: 0.95;
+      padding: 0.1rem 0.5rem;
+      font-weight: 600;
+      opacity: 1;
+      transition: color 0.25s ease;
     }
     .skill-chip {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 88px;
-      padding: 0.9rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      background: linear-gradient(135deg, rgba(26,26,37,0.95), rgba(123,94,167,0.08));
-      color: var(--text);
-      font-size: clamp(0.8rem, 1vw, 1.15rem);
+      min-height: 104px;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(255,255,255,0.46);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(126,130,138,0.92) 0%, rgba(205,207,214,0.55) 42%, rgba(96,101,109,0.82) 100%);
+      color: #111827;
+      font-size: clamp(0.82rem, 1vw, 1.14rem);
       line-height: 1.2;
       text-align: center;
       position: relative;
       overflow: hidden;
       transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 0 0 1px rgba(17,24,39,0.03);
+      backdrop-filter: blur(4px);
     }
     .skill-chip::before {
       content: '';
       position: absolute;
-      left: 0.9rem;
+      left: 1.15rem;
       top: 50%;
       transform: translateY(-50%);
-      width: 3px;
+      width: 4px;
       height: 42%;
-      border-radius: 3px;
-      background: linear-gradient(180deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 8px rgba(0,229,180,0.4);
+      border-radius: 999px;
+      background: linear-gradient(180deg, #70d9ff 0%, #4dd8ff 100%);
+      box-shadow: 0 0 10px rgba(83, 211, 255, 0.9);
     }
     .skill-chip:hover {
-      transform: translateY(-3px);
-      border-color: rgba(0,229,180,0.28);
-      box-shadow: 0 12px 30px rgba(0,229,180,0.08);
+      transform: translateY(-2px);
+      border-color: rgba(93, 200, 255, 0.42);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 12px 24px rgba(41, 53, 56, 0.08);
+    }
+    html[data-theme='light'] #skills {
+      background: #f2f2f4;
+    }
+    html[data-theme='light'] .skill-column-label {
+      color: rgba(31, 37, 46, 0.76);
+    }
+    html[data-theme='light'] .skill-chip {
+      background: linear-gradient(135deg, rgba(120,124,133,0.88) 0%, rgba(232,233,237,0.72) 40%, rgba(103,110,119,0.8) 100%);
+      color: #1f2937;
     }
 
     /* ── EXPERIENCE ── */
@@ -1028,12 +1043,13 @@
 
       <div class="project-header-block">
         <strong class="project-heading">AI-Powered BI Reporting &amp; Development Using MCP</strong>
-        <div class="project-role">Role: BI Development, QA Testing</div>
+        <div class="project-role">Role: BI Development & Testing</div>
       </div>
 
       <ul class="project-bullets">
         <li>Develop and enhance Power BI and Tableau dashboards using AI-assisted development tools to improve development efficiency and streamline analytics workflows.</li>
         <li>Utilize MCP-enabled workflows for Power BI and XML-based configurations for Tableau to automate development tasks and improve dashboard development productivity.</li>
+        <li>Did a end to end testing of Power BI and Tableau dashboards, ensuring data accuracy, performance optimization, and adherence to business requirements.</li>
       </ul>
       <div class="tag-list">
         <span class="tag">GitHub Copilot</span>
@@ -1044,15 +1060,13 @@
 
       <div class="project-header-block" style="margin-top: 2.5rem;">
         <strong class="project-heading">Data Engineering, Power BI Development &amp; QA Testing — GCP ETL Project</strong>
-        <div class="project-role">Role: ETL Data Engineering, Power BI Development, ETL &amp; BI Testing</div>
+        <div class="project-role">Power BI Development & Testing</div>
       </div>
 
       <ul class="project-bullets">
-        <li>Designed, developed, and maintained scalable ETL pipelines on Google Cloud Platform (GCP), streamlining data ingestion, transformation, and validation across multiple sources.</li>
         <li>Leveraged BigQuery and Dataform to extract, transform, and analyze large datasets, ensuring accuracy and consistency for downstream reporting.</li>
         <li>Built and maintained interactive Power BI dashboards and reports, applying advanced data modeling, DAX calculations, and Power Query transformations to deliver actionable business insights.</li>
-        <li>Executed comprehensive ETL and data quality testing, including source-to-target validation, business rule verification, and reconciliation, to ensure data integrity across systems.</li>
-        <li>Partnered with cross-functional teams to identify, troubleshoot, and resolve data quality issues, improving reliability and accuracy of reporting outputs.</li>
+        <li>Partnered with cross-functional teams in ETL Data Engineering & Testing to ensure alignment with business requirements and data quality standards.</li>
       </ul>
 
       <div class="tag-list">
@@ -1251,7 +1265,7 @@
   const html = document.documentElement;
   
   // Load saved theme from localStorage
-  const savedTheme = localStorage.getItem('theme') || 'dark';
+  const savedTheme = localStorage.getItem('theme') || 'light';
   html.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
   
